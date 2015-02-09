@@ -1,5 +1,5 @@
 import java.lang.Math;
-public class recursion implements hw1{
+public class Recursion implements hw1{
     
     public String name(){
 	return "Li,Mingrui";
