@@ -1,0 +1,21 @@
+public class recursion{
+    
+    public String name(){
+	return "Li,Mingrui";
+    }
+
+    public int fact(int n){
+	fact2(n, 1);
+    }
+    public fact2(int a, int b){
+	if (a < 1){
+	    return b;
+	}else{
+	    fact2(a - 1, b * a);
+	}
+    }
+    
+    public static void main(String[]args){
+	recursion a = new recursion();
+    }
+}
