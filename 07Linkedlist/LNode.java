@@ -7,16 +7,16 @@ public class LNode{
 	data = b;
     }
     
-    public void setnext(LNode a){
+    public void setNext(LNode a){
 	next = a;
     }
-    public LNode getnext(){
+    public LNode getNext(){
 	return next;
     }
-    public void setdata(int a){
+    public void setData(int a){
 	data = a;
     }
-    public int getdata(){
+    public int getData(){
 	return data;
     }
 }
