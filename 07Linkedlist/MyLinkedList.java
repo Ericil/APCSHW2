@@ -79,10 +79,24 @@ public class MyLinkedList{
 	
     }
 
-    public void remove(int index){
+    public int remove(int index){
+	location = 0;
 	if (index < 0 || index > thesize){
 	    throw new IndexOutOfBoundsException("index under 0 or above the size");
 	}
+	LNode place = start;
+	while(location != index - 1){
+	    place = place.getNext();
+	    location++;
+	}
+	LNode hold = place;
+	place = place.getNext();
+	int returning = place.getData();
+	LNode hold2 = place.getNext();
+	hold.setNext(hold2);
+	thesize--;
+	return returning;
+	
 	
     }
 
@@ -98,10 +112,23 @@ public class MyLinkedList{
 	return thesize;
 	    
     }
-    /*
+    
     public int indexOf(int value){
+	int returning = -1;
+	location = 0;
+	LNode place = start;
+	while(location != thesize - 1 && place.getData() != value){
+	    place = place.getNext();
+	    location++;
+	}
+	if (location <= thesize - 1){
+	    if (place.getData() == value){
+		returning = location;
+	    }
+	}
+	return returning;
     }
-    */
+    
     public static void main(String[]args){
 	MyLinkedList a = new MyLinkedList();
 	a.add(1);
@@ -111,6 +138,8 @@ public class MyLinkedList{
 	a.add(3, 4);
         a.set(2, 5);
 	System.out.println(a);
-	
+	a.remove(1);
+	System.out.println(a);
+	System.out.println(a.indexOf(10));
     }
 }
