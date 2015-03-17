@@ -1,13 +1,16 @@
 import java.util.*;
 import java.lang.*;
-public class MyLinkedList{
-    LNode start = new LNode(null, 0);
+public class MyLinkedList<T>{
+    LNode<T> start = new LNode<T>(null, null);
     int location;
     int thesize = 0;
-    LNode end;
+    LNode<T> end;
+    public String name(){
+	return "li.mingrui";
+    }
     public String toString(){
-	LNode place = start;
-	String data = "";
+	LNode<T> place = start;
+	String data = "[";
 	while(place.getNext() != null){
 	    data = data + place.getData() + ",";
 	    place = place.getNext();
@@ -15,42 +18,41 @@ public class MyLinkedList{
 	if (place.getNext() == null){
 	    data = data + place.getData() + ",";
 	}
-	return data;
+	return data.substring(0, data.length() - 1) + "]";
 	
     }
-    public int get(int index){
+    public T get(int index){
 	location = 0;
 	if (index < 0 || index > thesize){
 	    throw new IndexOutOfBoundsException("index under 0 or above the size");
 	}
-	LNode place = start;
+	LNode<T> place = start;
 	place = place.getNext();
 	location++;
-	
 	return place.getData();
     }
     
-    public int set(int index, int value){
+    public T set(int index, T value){
 	location = 0;
 	if (index < 0 || index > thesize){
 	    throw new IndexOutOfBoundsException("index under 0 or above the size");
 	}
-	LNode place = start;
+	LNode<T> place = start;
 	while (location != index){
 	    place = place.getNext();
 	    location++;
 	}
-	int returning = place.getData();
+	T returning = place.getData();
 	place.setData(value);
 	return returning;
     }
     
-    public boolean add(int value){
-	LNode newnode = new LNode(null, value);
+    public boolean add(T value){
+	LNode<T> newnode = new LNode<T>(null, value);
 	if(thesize == 0){
 	    start = newnode;
 	}else{
-	    LNode place = start;
+	    LNode<T> place = start;
 	    while (place.getNext() != null){
 		place = place.getNext();
 	    }
@@ -61,15 +63,15 @@ public class MyLinkedList{
 	    
     }
 
-    public void add(int index, int value){
+    public void add(int index, T value){
 	location = 0;
 	if (index < 0 || index > thesize){
 	    throw new IndexOutOfBoundsException("index under 0 or above the size");
 	}
-	LNode newnode = new LNode(null, value);
-	LNode place = start;
+	LNode<T> newnode = new LNode<T>(null, value);
+	LNode<T> place = start;
 	if (index > 0){
-	    LNode previous = start;
+	    LNode<T> previous = start;
 	    while(location != index){
 		if (location == index - 1){
 		    previous = place;
@@ -90,31 +92,36 @@ public class MyLinkedList{
 	
     }
     
-    public int remove(int index){
-	location = 0;
-	int returning = start.getData();
-	if (index < 0 || index > thesize){
-	    throw new IndexOutOfBoundsException("index under 0 or above the size");
-	}
-	if (index > 0){
-	    LNode place = start;
-	    while(location != index - 1){
-		place = place.getNext();
-		location++;
+    public T remove(int index){
+	T returning = start.getData();
+	if(thesize > 1){
+	    location = 0;
+	    if (index < 0 || index > thesize){
+		throw new IndexOutOfBoundsException("index under 0 or above the size");
 	    }
-	    LNode hold = place;
-	    place = place.getNext();
-	    returning = place.getData();
-	    LNode hold2 = place.getNext();
-	    hold.setNext(hold2);
-	    thesize--;
-	    if (hold.getNext() == null){
-	    end = hold;
+	    if (index > 0){
+		LNode<T> place = start;
+		while(location != index - 1){
+		    place = place.getNext();
+		    location++;
+		}
+		LNode<T> hold = place;
+		place = place.getNext();
+		returning = place.getData();
+		LNode<T> hold2 = place.getNext();
+		hold.setNext(hold2);
+		thesize--;
+		if (hold.getNext() == null){
+		    end = hold;
+		}
+	    }else{
+		LNode<T> place = start.getNext();
+		start = place;
+		thesize--;
 	    }
 	}else{
-	    LNode place = start.getNext();
-	    start = place;
 	    thesize--;
+	    start.setData(null);
 	}
 	return returning;
     }
@@ -127,30 +134,31 @@ public class MyLinkedList{
 	    
     }
     
-    public int indexOf(int value){
+    public int indexOf(T value){
 	int returning = -1;
-	location = 0;
-	LNode place = start;
-	while(location != thesize - 1 && place.getData() != value){
-	    place = place.getNext();
+	if(thesize > 0){
+	    location = 0;
+	    LNode<T> place = start;
+	    while(location != thesize - 1 && place.getData() != value){
+		place = place.getNext();
 	    location++;
-	}
-	if (location <= thesize - 1){
-	    if (place.getData() == value){
-		returning = location;
+	    }
+	    if (location <= thesize - 1){
+		if (place.getData() == value){
+		    returning = location;
+		}
 	    }
 	}
 	return returning;
     }
     
     public static void main(String[]args){
-	MyLinkedList a = new MyLinkedList();
+	MyLinkedList<Integer> a = new MyLinkedList<Integer>();
 	a.add(1);
 	System.out.println(a);
-	a.add(0, 4);
+	a.add(0, 2);
 	System.out.println(a);
-	a.add(5);
-	System.out.println(a);
+	System.out.println(a.get(2));
         a.remove(0);
 	System.out.println(a);
 	System.out.println(a.indexOf(10));
