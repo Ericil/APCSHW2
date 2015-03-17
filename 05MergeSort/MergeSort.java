@@ -1,6 +1,8 @@
 import java.util.*;
 public class MergeSort{
-    
+    public String name(){
+	return "li.mingrui";
+    }
     public static int[] merge(int a[], int b[]){
 	int[] merged = new int[a.length + b.length];
 	int c = 0;
