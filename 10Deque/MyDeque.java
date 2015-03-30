@@ -6,32 +6,51 @@ public class MyDeque<T>{
     int size;
     public MyDeque(){
 	list = new Object[10];
-	head = 49;
-	tail = 50;
+	head = 0;
+	tail = 1;
 	size = 0;
     }
-    public void meow(){
-	if (size == list.length){
-	    Object[] list2 = new Object[size * 2];
-	    int trigger = 0;
-	    int place = head + 1;
-	    for (int a = (size * 2)/4;trigger < 0; trigger++){
-		if (place == list.length - 1){
-		    place = 0;
-		}
-	        list2[a] = list[place];
-		place++;
-		a++;
+    public void resize(){
+	Object[] list2 = new Object[size * 2];
+	int a = 0;
+	for(int size1 = 0; size1 < list.length; size1++,head++){
+	    if (head == list.length - 1){
+		head = 0;
 	    }
-	    list = list2;
+	    list2[size1] = list[head];
 	}
+	head = 0;
+	tail = list.length - 1;
+	list = list2;
+	
     }
+
+    public void addFirst(T value){
+	if (size == list.length){
+	    resize();
+	}
+	if (head == 0){
+	    head = list.length - 1;
+	}else{
+	    head = head - 1;
+	}
+	list[head] = value;
+    }
+
+    public void addLast(T value){
+	if (size == list.length){
+	    resize();
+	}
+	if (tail == list.length - 1){
+	    tail = 0;
+	}else{
+	    tail = tail + 1;
+	}
+	list[tail] = value;
+    }
+
+
     public static void main(String[]args){
-	MyDeque<Integer> a = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
-	a.size = 10;
-	a.meow();
-       
-	System.out.println(Arrays.toString(a));
     }
 }
 	
