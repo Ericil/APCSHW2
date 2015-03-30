@@ -32,7 +32,7 @@ public class MyDeque<T>{
 	if (head == 0){
 	    head = list.length - 1;
 	}else{
-	    head = head - 1;
+	    head--;        ;
 	}
 	list[head] = value;
     }
@@ -49,7 +49,29 @@ public class MyDeque<T>{
 	list[tail] = value;
     }
 
+    public T removeFirst(){
+	if (list[head] == null){
+	    throw new NoSuchElementException();
+	}else{
+	    T hold = list[head];
+	    list[head] = null;
+	    head++;
+	    return hold;
+	}
+    }
 
+    public T removeLast(){
+	if (list[tail] == null){
+	    throw new NoSuchElementException();
+	}else{
+	    T hold = list[tail];
+	    list[tail] = null;
+	    tail--;
+	    return hold;
+	}
+    }
+
+    
     public static void main(String[]args){
     }
 }
