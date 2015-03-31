@@ -86,15 +86,14 @@ public class Maze{
 	return hide + go(0,0) + ans + "\n" + show + color(37,40);
     }
 
-    public String toString();//do not do the funky character codes
-    
-    public String toString(boolean animate); //do the funky character codes when animate is true
+    //public String toString(boolean animate); //do the funky character codes when animate is true
 
     /**Solve the maze using a frontier in a BFS manner. 
      * When animate is true, print the board at each step of the algorithm.
      * Replace spaces with x's as you traverse the maze. 
      */
-    public boolean solveBFS(boolean animate){    }
+    public boolean solveBFS(boolean animate){
+    }
 
     /**Solve the maze using a frontier in a DFS manner. 
      * When animate is true, print the board at each step of the algorithm.
