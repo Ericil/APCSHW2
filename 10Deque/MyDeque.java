@@ -71,6 +71,21 @@ public class MyDeque<T>{
 	}
     }
 
+    public T getFirst(){
+	if (list[head] == null){
+	    throw new NoSuchElementException();
+	}else{
+	    return list[head];
+	}
+    }
+    
+    public T getLast(){
+	if (list[tail] == null){
+	    throw new NoSuchElementException();
+	}else{
+	    return list[tail];
+	}
+    }
     
     public static void main(String[]args){
     }
