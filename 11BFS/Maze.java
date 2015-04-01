@@ -93,6 +93,7 @@ public class Maze{
      * Replace spaces with x's as you traverse the maze. 
      */
     public boolean solveBFS(boolean animate){
+       
     }
 
     /**Solve the maze using a frontier in a DFS manner. 

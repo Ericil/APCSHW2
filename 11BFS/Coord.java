@@ -1,10 +1,10 @@
-public class Frontier{
+public class Coord{
     int x;
     int y;
     int num;
     int xbefore;
     int ybefore;
-    public Frontier(int isx, int isy, int isnum, int isxbef, int isybef){
+    public Coord(int isx, int isy, int isnum, int isxbef, int isybef){
 	x = isx;
 	y = isy;
 	num = isnum;
