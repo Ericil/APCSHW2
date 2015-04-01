@@ -2,14 +2,12 @@ public class Coord{
     int x;
     int y;
     int num;
-    int xbefore;
-    int ybefore;
-    public Coord(int isx, int isy, int isnum, int isxbef, int isybef){
+    Coord prev;
+    public Coord(int isx, int isy, int isnum, Coord x){
 	x = isx;
 	y = isy;
 	num = isnum;
-	xbefore = isxbef;
-	ybefore = isybef;
+	prev = x;
     }
     
     public int getx(){
@@ -21,10 +19,7 @@ public class Coord{
     public int getnum(){
 	return num;
     }
-    public int getxbef(){
-	return xbefore;
-    }
-    public int getybef(){
-	return ybefore;
+    public Coord getprev(){
+	return prev;
     }
 }

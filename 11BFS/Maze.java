@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-public class Maze{
+public class Maze implements Deque{
     private char[][]maze;
     private int maxx,maxy;
     private int startx,starty;
@@ -9,7 +9,8 @@ public class Maze{
     private String clear =  "\033[2J";
     private String hide =  "\033[?25l";
     private String show =  "\033[?25h";
-
+    private Deque frontierx;
+    private Deque frontiery;
     public Maze(String filename){
 	startx = -1;
 	starty = -1;
@@ -86,6 +87,12 @@ public class Maze{
 	return hide + go(0,0) + ans + "\n" + show + color(37,40);
     }
 
+    public boolean solve(int animate, int mode){
+	if (animate == true){
+	    System.out.println(this);
+	}
+	
+    }
     //public String toString(boolean animate); //do the funky character codes when animate is true
 
     /**Solve the maze using a frontier in a BFS manner. 
@@ -93,14 +100,17 @@ public class Maze{
      * Replace spaces with x's as you traverse the maze. 
      */
     public boolean solveBFS(boolean animate){
-       
+	solve(animate, 0);
+				   
     }
 
     /**Solve the maze using a frontier in a DFS manner. 
      * When animate is true, print the board at each step of the algorithm.
      * Replace spaces with x's as you traverse the maze. 
      */
-    public boolean solveDFS(boolean animate){    }
+    public boolean solveDFS(boolean animate){
+	solve(animate, 1);
+    }
     
     public boolean solveBFS(){
 	return solveBFS(false);
