@@ -6,6 +6,10 @@ public class TreeNode<T>{
     public TreeNode(TreeNode<T> a, TreeNode<T> b, T c){
 	left = a;
 	right = b;
+	value = c;
+    }
+    public TreeNode(T a){
+	this(null, null, a);
     }
 
     public void setLeft(TreeNode<T> a){
