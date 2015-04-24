@@ -16,12 +16,9 @@ public class BTree<T>{
     private void add(TreeNode<T> current, TreeNode<T> adding){
 	Random rand = new Random(100);
 	if (current.getVal() == null){
-	    System.out.println("setting root");
-	    current.setVal(adding.getVal());;
-	    System.out.println(current.getVal());
+	    current.setVal(adding.getVal());
 	}else if (current.getLeft() == null &&
 		  current.getRight() == null){
-	    System.out.println("both null");
 	    int r = rand.nextInt(2);
 	    if (r == 0){
 		current.setLeft(adding);
@@ -33,7 +30,6 @@ public class BTree<T>{
 	}else if (current.getRight() == null){
 	    current.setRight(adding);
 	}else{
-	    System.out.println("no empty slots");
 	    int r = rand.nextInt(2);
 	    if (r == 0){
 		add(current.getLeft(), adding);
@@ -73,14 +69,37 @@ public class BTree<T>{
 	    System.out.println(current.getVal());
 	}
     }
-    /*
+    
     public int getHeight(){
 	return getHeight(sub);
     }
     public int getHeight(TreeNode<T> current){
-	return getHeight(current, 0);
+	if (current == null){
+	    return -1;
+	}
+	if (getHeight(current.getLeft()) > getHeight(current.getRight())){
+	    return (getHeight(current.getLeft()) + 1);
+	}else{
+	    return (getHeight(current.getRight())+ 1);
+	}
+	
+	
     }
-    */
+    
+
+    public String getLevel(TreeNode<T> current, int level, int currentLevel){
+	if (current == null){
+	return "";
+	}
+	if (level == currentLevel){
+	    return "" + current.getVal();
+	}
+	return getLevel(current.getLeft(), level, currentLevel + 1) + getLevel(current.getRight(), level, currentLevel + 1);
+    }
+
+    public String toString(){
+	return "";
+    }
     public static void main(String[]args){
 	BTree<Integer> t = new BTree<Integer>();
 	for (int i = 0; i < 8; i++){
