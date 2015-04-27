@@ -10,7 +10,6 @@ public class BTree<T>{
     }
     public void add(T value){
         TreeNode<T> hold = new TreeNode<T>(value);
-	System.out.println(hold.getVal());
 	add(sub, hold);
     }
     private void add(TreeNode<T> current, TreeNode<T> adding){
@@ -75,7 +74,7 @@ public class BTree<T>{
     }
     public int getHeight(TreeNode<T> current){
 	if (current == null){
-	    return -1;
+	    return 0;
 	}
 	if (getHeight(current.getLeft()) > getHeight(current.getRight())){
 	    return (getHeight(current.getLeft()) + 1);
@@ -85,8 +84,9 @@ public class BTree<T>{
 	
 	
     }
-    
-
+    public String getLevel(TreeNode<T> current, int level){
+	return getLevel(current, level, 0);
+    }
     public String getLevel(TreeNode<T> current, int level, int currentLevel){
 	if (current == null){
 	return "";
@@ -98,14 +98,23 @@ public class BTree<T>{
     }
 
     public String toString(){
-	return "";
+	String meowww = "";
+	for (int a = 0; a <= getHeight(sub); a++){
+	    meowww = meowww + getLevel(sub, a) + "\n";
+	}
+	return meowww;
+			      
     }
     public static void main(String[]args){
 	BTree<Integer> t = new BTree<Integer>();
+	
 	for (int i = 0; i < 8; i++){
 	    t.add(i);
 	}
-	t.traverse(IN_ORDER);
+	
+	System.out.println(t.getHeight());
+	System.out.println(t);
+	
     }
 }
 		
